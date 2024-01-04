@@ -7,6 +7,7 @@ class Menu {
     print("1 - VER LIVROS");
     print("2 - EMPRESTAR LIVROS");
     print("3 - DEVOLVER LIVROS");
+    print("4 - SAIR");
 
     int resposta = int.tryParse(stdin.readLineSync()!) ?? 0;
 
@@ -20,7 +21,13 @@ class Menu {
       case 3:
         devolverLivro(biblioteca);
         break;
+      case 4:
+        exit(0);
+      default:
+        menu(biblioteca, funcionarios);
+        break;
     }
+    menu(biblioteca, funcionarios);
   }
 
   void exibirLivros(List biblioteca, int modo) {
@@ -31,43 +38,37 @@ class Menu {
   }
 
   void emprestarLivro(List biblioteca) {
-    int indiceLivro =
-        obterIndiceLivro(biblioteca, "QUAL O LIVRO QUE DESEJA EMPRESTAR?");
-    realizarOperacaoLivro(biblioteca, indiceLivro,
-        "Empréstimo realizado com sucesso!", "Livro não encontrado.");
+    String mensagem = "QUAL O LIVRO QUE DESEJA EMPRESTAR?";
+    int indiceLivro = encontrarLivro(biblioteca, mensagem);
+    Livro livroEscolhido = biblioteca[indiceLivro];
+    for (int i = 0; i < biblioteca.length; i++) {
+      if (biblioteca[i].id == livroEscolhido.id) {
+        if (biblioteca[i].emprestado) {
+          int retorno = biblioteca[i].devolver();
+          print(retorno);
+        }
+        return;
+      }
+    }
   }
 
   void devolverLivro(List biblioteca) {
-    int indiceLivro =
-        obterIndiceLivro(biblioteca, "QUAL O LIVRO QUE DESEJA DEVOLVER?");
-    realizarOperacaoLivro(
-        biblioteca, indiceLivro, "Livro devolvido!", "Livro não encontrado.");
+    String mensagem = "QUAL O LIVRO QUE DESEJA DEVOLVER?";
+    int indiceLivro = encontrarLivro(biblioteca, mensagem);
+    Livro livroEscolhido = biblioteca[indiceLivro];
+    for (int i = 0; i < biblioteca.length; i++) {
+      if ((biblioteca[i].id == livroEscolhido.id) &
+          (!biblioteca[i].emprestado)) {
+        biblioteca[i].devolver();
+      }
+      return;
+    }
   }
 
-  int obterIndiceLivro(List biblioteca, String mensagem) {
+  int encontrarLivro(List biblioteca, String mensagem) {
     exibirLivros(biblioteca, 1);
     print(mensagem);
     print("=>: ");
     return int.tryParse(stdin.readLineSync()!) ?? -1;
-  }
-
-  void realizarOperacaoLivro(List biblioteca, int indice,
-      String mensagemSucesso, String mensagemFalha) {
-    if (indice >= 0 && indice < biblioteca.length) {
-      Livro livroEscolhido = biblioteca[indice];
-
-      for (int i = 0; i < biblioteca.length; i++) {
-        if (biblioteca[i].verificar() == livroEscolhido.verificar()) {
-          biblioteca[i]
-              .emprestar(); // Assumindo que emprestar() é um método na classe Livro.
-          print(mensagemSucesso);
-          return;
-        }
-      }
-
-      print(mensagemFalha);
-    } else {
-      print("Opção inválida.");
-    }
   }
 }

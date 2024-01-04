@@ -21,8 +21,8 @@ class Livro {
       String nascimento)
       : _autor = Autor(idAutor, pseudonimo, nome, cpf, nascimento);
 
-  int verificar() {
-    return this._id;
+  bool verificar() {
+    return this._emprestado;
   }
 
   emprestar() {
@@ -35,6 +35,7 @@ class Livro {
 
   devolver() {
     if (!this._emprestado) {
+      print("Livro devolvido");
       this._emprestado = false;
     } else {
       print("O livro não pode ser devolvido porque ainda está emprestado");
@@ -52,4 +53,28 @@ class Livro {
     print("SITUAÇÃO: $_situacao");
     print(_autor.exibirInfos());
   }
+
+  get id => this._id;
+
+  set id(value) => this._id = value;
+
+  get titulo => this._titulo;
+
+  set titulo(value) => this._titulo = value;
+
+  get paginas => this._paginas;
+
+  set paginas(value) => this._paginas = value;
+
+  get genero => this._genero;
+
+  set genero(value) => this._genero = value;
+
+  get autor => this._autor;
+
+  set autor(value) => this._autor = value;
+
+  get emprestado => this._emprestado;
+
+  set emprestado(value) => this._emprestado = value;
 }
