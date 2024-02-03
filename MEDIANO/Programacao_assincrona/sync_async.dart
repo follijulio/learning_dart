@@ -1,5 +1,9 @@
 void main() {
-  var future = Future.delayed(Duration(seconds: 2));
-  future.then((value) => print('world'));
-    print('hello');
+  funcao();
+  print('Hello');
+}
+
+Future<void> funcao() async{
+  await Future.delayed(Duration(seconds: 2));
+  print('World');
 }
