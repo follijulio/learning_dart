@@ -2,10 +2,12 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:miau/miau.dart' as miau;
 
 Future main() async {
-  final todo = await teste_assincrono();
-  print(todo.title);
+  print(miau.toInt('199'));
+  //final todo = await teste_assincrono();
+  //print(todo.title);
 }
 
 Future<Todo> teste_assincrono() async {
