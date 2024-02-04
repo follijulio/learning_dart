@@ -1,3 +1,10 @@
-int calculate(int valor1, int valor2) {
-  return valor1 * valor2;
+int toInt(String text) {
+  int valor;
+  try {
+    valor = int.parse(text);
+  } catch (e) {
+    print(e);
+    valor = 0;
+  }
+  return valor;
 }
