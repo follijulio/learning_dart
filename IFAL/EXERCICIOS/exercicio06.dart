@@ -1,12 +1,12 @@
 import 'dart:io';
 
 void main(List<String> args) {
-  String altura;
-  double alturaMedia = 0;
+  String height;
+  double average_height = 0;
   for (var i = 0; i < 10; i++) {
     print("Qual a altura do indivíduo $i?: ");
-    altura = stdin.readLineSync()!;
-    alturaMedia = alturaMedia + double.parse(altura);
+    height = stdin.readLineSync()!;
+    average_height = average_height + double.parse(height);
   }
-  print("A altura média dos indivíduos é ${alturaMedia / 10}");
+  print("A altura média dos indivíduos é ${average_height / 10}");
 }
