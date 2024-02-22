@@ -1,6 +1,6 @@
 import 'dart:io';
 
-Future<void> main(List<String> args) async {
+void main(List<String> args) {
   var high = 0;
   String value;
   var number = 0;
