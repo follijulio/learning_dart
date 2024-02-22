@@ -1,16 +1,14 @@
 import 'dart:io';
 
 void main(List<String> args) {
-  var high = 0;
-  String value;
+  var low = 1000000000000000000;
   var number = 0;
   for (var i = 1; i <= 10; i++) {
     print("Digite o $i ª número: ");
-    value = stdin.readLineSync()!;
-    number = int.tryParse(value) ?? 0;
-    if (number > high) {
-      high = number;
+    number = int.tryParse(stdin.readLineSync()!) ?? 0;
+    if (number < low) {
+      low = number;
     }
   }
-  print("O número mais alto foi: $high");
+  print("O número mais alto foi: $low");
 }
