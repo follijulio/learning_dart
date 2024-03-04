@@ -2,8 +2,8 @@ import 'dart:io';
 
 void main(List<String> args) {
   List<Pessoa> older_people = [];
-  Pessoa older_person = new Pessoa('a', 0);
-  Pessoa younger_person = new Pessoa('b', 0);
+  Pessoa older_person = new Pessoa('', 0);
+  Pessoa younger_person = new Pessoa('', 0);
   int old_age = 0;
   String name = '';
   int age = 0;
